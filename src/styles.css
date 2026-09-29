@@ -1,3 +1,207 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", "Noto Serif SC", "Noto Naskh Arabic", Georgia, serif;
+  --font-sans: "Outfit", "Noto Sans SC", "Noto Naskh Arabic", sans-serif;
+  --color-ivory: #f3eee4;
+  --color-paper: #f7f3eb;
+  --color-forest: #1b3328;
+  --color-forest-deep: #102018;
+  --color-moss: #3e5649;
+  --color-mist: #d4cbbd;
+  --color-gold: #5c4520;
+  --color-gold-line: #b08d45;
+  --color-gold-pale: #e4d3a4;
+  --color-line: #ddd4c6;
+  --color-line-strong: #cfc4b2;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-ivory);
+    background-image:
+      radial-gradient(ellipse at 0% 0%, rgb(176 141 69 / 0.09), transparent 46%),
+      radial-gradient(ellipse at 100% 100%, rgb(27 51 40 / 0.05), transparent 42%);
+    color: var(--color-forest);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  ::selection {
+    background: var(--color-gold-pale);
+    color: var(--color-forest);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-line);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 6.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+html[lang="ar"] {
+  --font-display: "Noto Naskh Arabic", Georgia, serif;
+  --font-sans: "Noto Naskh Arabic", sans-serif;
+}
+
+html[lang="zh-Hans"] {
+  --font-display: "Noto Serif SC", Georgia, serif;
+  --font-sans: "Noto Sans SC", sans-serif;
+}
+
+.brand,
+.brand-hero,
+.index-num {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.brand {
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.brand-hero {
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.82;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.96;
+}
+
+.eyebrow {
+  color: var(--color-gold);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  color: var(--color-moss);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  padding-bottom: 0.2rem;
+  text-transform: uppercase;
+}
+
+.nav-link.is-active {
+  box-shadow: inset 0 -1px 0 var(--color-gold-line);
+  color: var(--color-forest);
+}
+
+.mark-link {
+  align-items: center;
+  border-bottom: 1px solid var(--color-gold-line);
+  display: inline-flex;
+  font-size: 0.76rem;
+  font-weight: 500;
+  gap: 0.7rem;
+  letter-spacing: 0.16em;
+  padding-bottom: 0.2rem;
+  text-transform: uppercase;
+}
+
+.mark-link:hover {
+  color: var(--color-gold);
+}
+
+.field {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-line-strong);
+  border-radius: 0;
+  outline: none;
+  padding: 0.85rem 0;
+  width: 100%;
+}
+
+.field:focus {
+  border-bottom-color: var(--color-gold-line);
+}
+
+.field-error {
+  color: #8a3d2f;
+  font-size: 0.82rem;
+  margin-top: 0.35rem;
+}
+
+html[lang="ar"] .display {
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.45;
+}
+
+html[lang="zh-Hans"] .display {
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+html[lang="ar"] .eyebrow,
+html[lang="zh-Hans"] .eyebrow,
+html[lang="ar"] .nav-link,
+html[lang="zh-Hans"] .nav-link,
+html[lang="ar"] .mark-link,
+html[lang="zh-Hans"] .mark-link {
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+html[lang="ar"] .nav-link,
+html[lang="zh-Hans"] .nav-link,
+html[lang="ar"] .mark-link,
+html[lang="zh-Hans"] .mark-link,
+html[lang="ar"] .eyebrow,
+html[lang="zh-Hans"] .eyebrow {
+  font-size: 0.98rem;
+}
+
+[lang="ar"] {
+  font-family: "Noto Naskh Arabic", serif;
+}

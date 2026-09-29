@@ -1,0 +1,138 @@
+export type PageKey = 'home' | 'about' | 'tours' | 'services' | 'events' | 'careers' | 'contact';
+
+export interface Dictionary {
+  htmlLang: string;
+  dir: 'ltr' | 'rtl';
+  metaDescription: string;
+  titles: Record<PageKey, string>;
+  brand: { tagline: string };
+  nav: {
+    skip: string;
+    primary: string;
+    home: string;
+    about: string;
+    tours: string;
+    services: string;
+    events: string;
+    careers: string;
+    contact: string;
+    menu: string;
+    close: string;
+    language: string;
+  };
+  footer: { line: string; place: string; rights: string };
+  home: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    houseCta: string;
+    journeysCta: string;
+    statementKicker: string;
+    statement: string;
+    principles: { title: string; text: string }[];
+    journeysKicker: string;
+    journeysTitle: string;
+    journeysLead: string;
+    servicesKicker: string;
+    servicesTitle: string;
+    servicesLead: string;
+    trainingKicker: string;
+    trainingTitle: string;
+    trainingLead: string;
+    trainingCta: string;
+    careersKicker: string;
+    careersTitle: string;
+    careersLead: string;
+    careersCta: string;
+    contactKicker: string;
+    contactTitle: string;
+    contactLead: string;
+    contactCta: string;
+  };
+  about: {
+    kicker: string;
+    title: string;
+    lead: string;
+    holdsTitle: string;
+    holds: string[];
+    essay: string[];
+    ownersKicker: string;
+    ownersTitle: string;
+    ownersLead: string;
+    charges: { title: string; text: string }[];
+    close: string;
+  };
+  tours: {
+    kicker: string;
+    title: string;
+    lead: string;
+    included: string;
+    note: string;
+    items: {
+      id: string;
+      layout: 'list' | 'pillars';
+      motif: 'museum' | 'pyramid' | 'flight';
+      kicker: string;
+      title: string;
+      text: string;
+      includes: string[];
+    }[];
+  };
+  services: {
+    kicker: string;
+    title: string;
+    lead: string;
+    items: { id: string; index: string; title: string; text: string; points: string[] }[];
+  };
+  events: {
+    kicker: string;
+    title: string;
+    lead: string;
+    request: string;
+    modulesLabel: string;
+    programs: { id: string; title: string; audience: string; text: string; modules: string[] }[];
+  };
+  careers: {
+    kicker: string;
+    title: string;
+    lead: string;
+    all: string;
+    apply: string;
+    roles: {
+      id: string;
+      departmentId: 'desk' | 'kitchen' | 'house' | 'journey';
+      title: string;
+      department: string;
+      place: string;
+      type: string;
+      summary: string;
+    }[];
+  };
+  contact: {
+    kicker: string;
+    title: string;
+    lead: string;
+    asideTitle: string;
+    asideText: string;
+    inquiry: string;
+    suggestion: string;
+    inquiryHint: string;
+    suggestionHint: string;
+    name: string;
+    email: string;
+    phone: string;
+    optional: string;
+    topic: string;
+    message: string;
+    send: string;
+    required: string;
+    emailInvalid: string;
+    held: string;
+    sentTitle: string;
+    sent: string;
+    another: string;
+    regarding: string;
+    intentLabel: string;
+    topics: { id: string; label: string }[];
+  };
+}
