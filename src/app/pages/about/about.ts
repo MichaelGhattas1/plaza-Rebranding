@@ -17,6 +17,7 @@ import { PageIntro } from '../../shared/page-intro/page-intro';
           }
         </ul>
       </div>
+      
       <div class="space-y-6 text-lg leading-relaxed lg:col-span-7 lg:col-start-6">
         @for (paragraph of t.about.essay; track paragraph) {
           <p>{{ paragraph }}</p>
