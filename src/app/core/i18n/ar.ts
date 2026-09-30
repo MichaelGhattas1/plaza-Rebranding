@@ -42,6 +42,9 @@ export const ar = {
     journeysCta: 'انظر الرحلات',
     statementKicker: 'من نحن',
     statement: 'دار للضيوف، ومدرسة لمن يقوم على خدمتهم.',
+    entrance: 'المدخل',
+    play: 'تشغيل',
+    pause: 'إيقاف',
     principles: [
       { title: 'الإقامة', text: 'غرف، وإفطار، ومطاعم، ومقاهٍ، بمعيار واحد.' },
       {

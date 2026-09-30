@@ -42,6 +42,9 @@ export const zh = {
     journeysCta: '查看旅程',
     statementKicker: '关于我们',
     statement: '一座接待宾客的宅邸，也是一所培养照管者的学校。',
+    entrance: '入口',
+    play: '播放',
+    pause: '暂停',
     principles: [
       { title: '下榻', text: '客房、早餐、餐厅与咖啡馆，守着同一个标准。' },
       { title: '旅程', text: '大埃及博物馆、金字塔，以及合成一次安排的机票套餐。' },

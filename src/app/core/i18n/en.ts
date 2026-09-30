@@ -42,6 +42,9 @@ export const en = {
     journeysCta: 'See the journeys',
     statementKicker: 'About us',
     statement: 'A house for guests, and a school for the people who look after them.',
+    entrance: 'The entrance',
+    play: 'Play',
+    pause: 'Pause',
     principles: [
       {
         title: 'The stay',

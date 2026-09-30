@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { afterNextRender, Component, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../core/i18n/language.service';
 import { Motif } from '../../shared/motif/motif';
@@ -23,25 +23,48 @@ import { Reveal } from '../../shared/reveal/reveal';
           </div>
         </div>
         <div class="relative lg:col-span-5">
-          <div class="float absolute -start-5 top-10 hidden size-24 rounded-[1.7rem] bg-coral lg:block" aria-hidden="true"></div>
-          <div class="float float-late absolute -end-3 -bottom-5 hidden size-16 rounded-full bg-sun lg:block" aria-hidden="true"></div>
-          <div class="card relative p-7">
-            <p class="chip bg-mint text-teal">{{ t.home.statementKicker }}</p>
-            <p class="display mt-4 text-3xl">{{ t.home.statement }}</p>
-            <ul class="mt-6 space-y-3">
-              @for (item of t.home.principles; track item.title; let i = $index) {
-                <li class="flex items-center gap-3">
-                  <span
-                    class="size-2.5 shrink-0 rounded-full"
-                    [class.bg-teal]="i === 0"
-                    [class.bg-sun]="i === 1"
-                    [class.bg-coral]="i === 2"
-                  ></span>
-                  <span class="font-semibold">{{ item.title }}</span>
-                </li>
-              }
-            </ul>
-          </div>
+          <div class="float absolute -start-5 top-16 hidden size-24 rounded-[1.7rem] bg-coral lg:block" aria-hidden="true"></div>
+          <div class="float float-late absolute -end-3 bottom-16 hidden size-16 rounded-full bg-sun lg:block" aria-hidden="true"></div>
+          <figure class="relative">
+            <div class="relative overflow-hidden rounded-[1.9rem] bg-ink shadow-[0_28px_60px_rgb(23_48_40/0.18)] ring-[6px] ring-white">
+              <video
+                #film
+                class="h-[28rem] w-full object-cover object-[center_70%] sm:h-[34rem] lg:h-[38rem]"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                (play)="playing.set(true)"
+                (pause)="playing.set(false)"
+                [attr.aria-label]="t.home.entrance"
+              >
+                <source src="plazaEntrance.mp4" type="video/mp4" />
+              </video>
+              <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#173028]/55 via-transparent to-transparent"></div>
+              <p class="absolute start-4 top-4 chip bg-white/95 text-coral">{{ t.home.entrance }}</p>
+              <button
+                type="button"
+                class="absolute end-4 top-4 grid size-11 place-items-center rounded-full bg-white/95 text-ink shadow-lg"
+                (click)="toggleFilm()"
+                [attr.aria-pressed]="playing()"
+                [attr.aria-label]="playing() ? t.home.pause : t.home.play"
+              >
+                @if (playing()) {
+                  <svg viewBox="0 0 24 24" class="size-4" aria-hidden="true">
+                    <path fill="currentColor" d="M6 5h4v14H6zm8 0h4v14h-4z" />
+                  </svg>
+                } @else {
+                  <svg viewBox="0 0 24 24" class="size-4" aria-hidden="true">
+                    <path fill="currentColor" d="M8 5v14l11-7z" />
+                  </svg>
+                }
+              </button>
+            </div>
+            <figcaption class="card relative z-10 mt-4 p-5">
+              <p class="chip bg-mint text-teal">{{ t.home.statementKicker }}</p>
+              <p class="display mt-3 text-2xl">{{ t.home.statement }}</p>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -163,4 +186,29 @@ import { Reveal } from '../../shared/reveal/reveal';
 })
 export class Home {
   readonly lang = inject(LanguageService);
+  readonly playing = signal(false);
+  private readonly film = viewChild<ElementRef<HTMLVideoElement>>('film');
+
+  constructor() {
+    afterNextRender(() => {
+      const video = this.film()?.nativeElement;
+      if (!video) return;
+      const reduce =
+        typeof window.matchMedia === 'function' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      video.play().then(() => this.playing.set(true)).catch(() => this.playing.set(false));
+    });
+  }
+
+  toggleFilm(): void {
+    const video = this.film()?.nativeElement;
+    if (!video) return;
+    if (video.paused) {
+      video.play().then(() => this.playing.set(true)).catch(() => this.playing.set(false));
+      return;
+    }
+    video.pause();
+    this.playing.set(false);
+  }
 }

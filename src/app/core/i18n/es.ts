@@ -42,6 +42,9 @@ export const es = {
     journeysCta: 'Ver los viajes',
     statementKicker: 'Sobre nosotros',
     statement: 'Una casa para los huéspedes, y una escuela para quienes los cuidan.',
+    entrance: 'La entrada',
+    play: 'Reproducir',
+    pause: 'Pausar',
     principles: [
       {
         title: 'La estancia',

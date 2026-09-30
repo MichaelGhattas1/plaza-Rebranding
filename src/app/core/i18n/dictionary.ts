@@ -29,6 +29,9 @@ export interface Dictionary {
     journeysCta: string;
     statementKicker: string;
     statement: string;
+    entrance: string;
+    play: string;
+    pause: string;
     principles: { title: string; text: string }[];
     journeysKicker: string;
     journeysTitle: string;

@@ -42,6 +42,9 @@ export const fr = {
     journeysCta: 'Voir les voyages',
     statementKicker: 'À propos',
     statement: 'Une maison pour les hôtes, et une école pour ceux qui veillent sur eux.',
+    entrance: "L'entrée",
+    play: 'Lecture',
+    pause: 'Pause',
     principles: [
       {
         title: 'Le séjour',
