@@ -138,7 +138,6 @@ html[lang="zh-Hans"] {
   .btn-coral {
     background: var(--color-coral);
     color: white;
-    box-shadow: 0 10px 20px rgb(209 67 50 / 0.28);
   }
 
   .btn-coral:hover {
@@ -167,20 +166,8 @@ html[lang="zh-Hans"] {
 
   .card {
     background: white;
-    border-radius: 1.5rem;
-    box-shadow: 0 14px 36px rgb(23 48 40 / 0.07);
-  }
-
-  .panel {
-    background: white;
-    border-radius: 1.5rem;
-    box-shadow: 0 14px 36px rgb(23 48 40 / 0.07);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .panel:hover {
-    box-shadow: 0 22px 46px rgb(23 48 40 / 0.12);
-    transform: translateY(-4px);
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 28px rgb(23 48 40 / 0.06);
   }
 
   .field {

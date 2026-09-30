@@ -8,8 +8,8 @@ import { Logo } from '../../shared/logo/logo';
   imports: [RouterLink, Logo],
   template: `
     @let t = lang.copy();
-    <footer class="mt-4">
-      <div class="h-2 bg-gradient-to-r from-coral via-sun to-teal"></div>
+    <footer>
+      <div class="h-1.5 bg-gradient-to-r from-coral via-sun to-teal"></div>
       <div class="bg-white">
         <div class="mx-auto grid w-full max-w-6xl gap-8 px-5 py-12 md:px-8 lg:grid-cols-12">
           <div class="lg:col-span-5">

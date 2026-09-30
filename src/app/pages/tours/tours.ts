@@ -11,14 +11,9 @@ import { PageIntro } from '../../shared/page-intro/page-intro';
     <app-page-intro [kicker]="t.tours.kicker" [title]="t.tours.title" [lead]="t.tours.lead" />
     <div class="mx-auto grid w-full max-w-6xl gap-5 px-5 pb-10 md:px-8">
       @for (item of t.tours.items; track item.id; let i = $index) {
-        <article [id]="item.id" class="panel grid items-center gap-6 overflow-hidden p-6 md:grid-cols-12">
-          <div
-            class="flex items-center justify-center rounded-3xl p-6 md:col-span-4"
-            [class.bg-mint]="i === 0"
-            [class.bg-butter]="i === 1"
-            [class.bg-blush]="i === 2"
-          >
-            <app-motif class="block w-full max-w-52" [name]="item.motif" />
+        <article [id]="item.id" class="card grid items-center gap-6 p-6 md:grid-cols-12">
+          <div class="md:col-span-4">
+            <app-motif class="mx-auto block w-full max-w-56" [name]="item.motif" />
           </div>
           <div class="md:col-span-8">
             <p class="text-sm font-bold" [class.text-teal]="i === 0" [class.text-gold]="i === 1" [class.text-coral]="i === 2">

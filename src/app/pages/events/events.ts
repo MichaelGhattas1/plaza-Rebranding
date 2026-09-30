@@ -11,11 +11,10 @@ import { PageIntro } from '../../shared/page-intro/page-intro';
     <app-page-intro [kicker]="t.events.kicker" [title]="t.events.title" [lead]="t.events.lead" />
     <div class="mx-auto grid w-full max-w-6xl gap-4 px-5 pb-8 md:px-8 lg:grid-cols-2">
       @for (item of t.events.programs; track item.id; let i = $index) {
-        <article [id]="item.id" class="panel overflow-hidden">
-          <div class="relative overflow-hidden px-6 py-6 text-white" [class.bg-sky]="i === 0" [class.bg-teal]="i === 1">
-            <div class="pointer-events-none absolute -end-6 -top-8 size-24 rounded-full bg-white/15" aria-hidden="true"></div>
-            <p class="relative text-sm font-bold text-white/80">{{ item.audience }}</p>
-            <h2 class="display relative mt-1 text-4xl">{{ item.title }}</h2>
+        <article [id]="item.id" class="card overflow-hidden">
+          <div class="px-6 py-5 text-white" [class.bg-sky]="i === 0" [class.bg-teal]="i === 1">
+            <p class="text-sm font-bold text-white/80">{{ item.audience }}</p>
+            <h2 class="display mt-1 text-4xl">{{ item.title }}</h2>
           </div>
           <div class="p-6">
             <p class="text-moss">{{ item.text }}</p>
