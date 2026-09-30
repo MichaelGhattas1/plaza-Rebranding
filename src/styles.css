@@ -3,17 +3,22 @@
 @theme {
   --font-display: "Cormorant Garamond", "Noto Serif SC", "Noto Naskh Arabic", Georgia, serif;
   --font-sans: "Outfit", "Noto Sans SC", "Noto Naskh Arabic", sans-serif;
-  --color-ivory: #f3eee4;
-  --color-paper: #f7f3eb;
-  --color-forest: #1b3328;
-  --color-forest-deep: #102018;
-  --color-moss: #3e5649;
-  --color-mist: #d4cbbd;
-  --color-gold: #5c4520;
-  --color-gold-line: #b08d45;
-  --color-gold-pale: #e4d3a4;
-  --color-line: #ddd4c6;
-  --color-line-strong: #cfc4b2;
+  --color-ivory: #fff8f1;
+  --color-paper: #ffffff;
+  --color-ink: #173028;
+  --color-forest: #173028;
+  --color-moss: #4d6158;
+  --color-coral: #d14332;
+  --color-sun: #e39b08;
+  --color-teal: #0f766e;
+  --color-sky: #1d6fa8;
+  --color-blush: #ffe8e2;
+  --color-butter: #fff3d1;
+  --color-mint: #e3f6f3;
+  --color-ice: #e7f2fb;
+  --color-gold: #8a5a08;
+  --color-line: #f0e4d6;
+  --color-line-strong: #e4d3c2;
 }
 
 @layer base {
@@ -26,12 +31,13 @@
     min-height: 100vh;
     background-color: var(--color-ivory);
     background-image:
-      radial-gradient(ellipse at 0% 0%, rgb(176 141 69 / 0.09), transparent 46%),
-      radial-gradient(ellipse at 100% 100%, rgb(27 51 40 / 0.05), transparent 42%);
-    color: var(--color-forest);
+      radial-gradient(circle at 0% 0%, rgb(209 67 50 / 0.1), transparent 32%),
+      radial-gradient(circle at 100% 8%, rgb(15 118 110 / 0.12), transparent 28%),
+      radial-gradient(circle at 90% 100%, rgb(227 155 8 / 0.14), transparent 26%);
+    color: var(--color-ink);
     font-family: var(--font-sans);
     font-weight: 400;
-    line-height: 1.65;
+    line-height: 1.6;
     text-rendering: optimizeLegibility;
   }
 
@@ -49,17 +55,17 @@
   }
 
   ::selection {
-    background: var(--color-gold-pale);
-    color: var(--color-forest);
+    background: var(--color-butter);
+    color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-gold-line);
+    outline: 2px solid var(--color-teal);
     outline-offset: 3px;
   }
 
   [id] {
-    scroll-margin-top: 6.5rem;
+    scroll-margin-top: 5.5rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -86,95 +92,108 @@ html[lang="zh-Hans"] {
   --font-sans: "Noto Sans SC", sans-serif;
 }
 
-.brand,
-.brand-hero,
-.index-num {
-  font-family: "Cormorant Garamond", Georgia, serif;
-}
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
 
-.brand {
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  line-height: 1;
-  text-transform: uppercase;
-}
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    background: var(--color-blush);
+    color: var(--color-coral);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    padding: 0.45rem 0.75rem;
+    text-transform: uppercase;
+  }
 
-.brand-hero {
-  font-weight: 500;
-  letter-spacing: -0.045em;
-  line-height: 0.82;
-}
+  .nav-link {
+    color: var(--color-moss);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
 
-.display {
-  font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 0.96;
-}
+  .nav-link.is-active {
+    color: var(--color-coral);
+  }
 
-.eyebrow {
-  color: var(--color-gold);
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
+  .btn {
+    align-items: center;
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: 0.95rem;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.2;
+    padding: 0.75rem 1.15rem;
+  }
 
-.nav-link {
-  color: var(--color-moss);
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  padding-bottom: 0.2rem;
-  text-transform: uppercase;
-}
+  .btn-coral {
+    background: var(--color-coral);
+    color: white;
+  }
 
-.nav-link.is-active {
-  box-shadow: inset 0 -1px 0 var(--color-gold-line);
-  color: var(--color-forest);
-}
+  .btn-coral:hover {
+    background: #b83628;
+  }
 
-.mark-link {
-  align-items: center;
-  border-bottom: 1px solid var(--color-gold-line);
-  display: inline-flex;
-  font-size: 0.76rem;
-  font-weight: 500;
-  gap: 0.7rem;
-  letter-spacing: 0.16em;
-  padding-bottom: 0.2rem;
-  text-transform: uppercase;
-}
+  .btn-teal {
+    background: var(--color-teal);
+    color: white;
+  }
 
-.mark-link:hover {
-  color: var(--color-gold);
-}
+  .btn-sky {
+    background: var(--color-sky);
+    color: white;
+  }
 
-.field {
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--color-line-strong);
-  border-radius: 0;
-  outline: none;
-  padding: 0.85rem 0;
-  width: 100%;
-}
+  .btn-sky:hover {
+    background: #185e8e;
+  }
 
-.field:focus {
-  border-bottom-color: var(--color-gold-line);
-}
+  .btn-ghost {
+    background: white;
+    box-shadow: inset 0 0 0 1.5px var(--color-line-strong);
+    color: var(--color-ink);
+  }
 
-.field-error {
-  color: #8a3d2f;
-  font-size: 0.82rem;
-  margin-top: 0.35rem;
+  .card {
+    background: white;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 28px rgb(23 48 40 / 0.06);
+  }
+
+  .field {
+    background: white;
+    border: 1.5px solid var(--color-line-strong);
+    border-radius: 0.9rem;
+    outline: none;
+    padding: 0.8rem 0.9rem;
+    width: 100%;
+  }
+
+  .field:focus {
+    border-color: var(--color-teal);
+  }
+
+  .field-error {
+    color: var(--color-coral);
+    font-size: 0.82rem;
+    margin-top: 0.35rem;
+  }
 }
 
 html[lang="ar"] .display {
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 html[lang="zh-Hans"] .display {
@@ -183,23 +202,13 @@ html[lang="zh-Hans"] .display {
   line-height: 1.25;
 }
 
-html[lang="ar"] .eyebrow,
-html[lang="zh-Hans"] .eyebrow,
+html[lang="ar"] .chip,
+html[lang="zh-Hans"] .chip,
 html[lang="ar"] .nav-link,
-html[lang="zh-Hans"] .nav-link,
-html[lang="ar"] .mark-link,
-html[lang="zh-Hans"] .mark-link {
-  letter-spacing: 0.04em;
+html[lang="zh-Hans"] .nav-link {
+  letter-spacing: 0;
   text-transform: none;
-}
-
-html[lang="ar"] .nav-link,
-html[lang="zh-Hans"] .nav-link,
-html[lang="ar"] .mark-link,
-html[lang="zh-Hans"] .mark-link,
-html[lang="ar"] .eyebrow,
-html[lang="zh-Hans"] .eyebrow {
-  font-size: 0.98rem;
+  font-size: 1rem;
 }
 
 [lang="ar"] {

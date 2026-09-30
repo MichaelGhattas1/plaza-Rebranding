@@ -13,24 +13,24 @@ const TOPIC_IDS = ['stay', 'journey', 'training', 'career', 'house'];
   template: `
     @let t = lang.copy();
     <app-page-intro [kicker]="t.contact.kicker" [title]="t.contact.title" [lead]="t.contact.lead" />
-    <div class="mx-auto grid w-full max-w-[1440px] gap-14 px-5 pb-24 md:px-10 lg:grid-cols-12">
+    <div class="mx-auto grid w-full max-w-6xl gap-8 px-5 pb-16 md:px-8 lg:grid-cols-12">
       <aside class="lg:col-span-4">
-        <p class="eyebrow">{{ t.contact.asideTitle }}</p>
-        <p class="mt-4 text-lg leading-relaxed text-moss">{{ t.contact.asideText }}</p>
+        <p class="text-sm font-bold text-teal">{{ t.contact.asideTitle }}</p>
+        <p class="mt-3 text-lg text-moss">{{ t.contact.asideText }}</p>
       </aside>
 
-      <div class="lg:col-span-7 lg:col-start-6">
+      <div class="card p-6 md:p-8 lg:col-span-8">
         @if (state() === 'sent') {
           <div role="status">
             <h2 class="display text-5xl">{{ t.contact.sentTitle }}</h2>
             <p class="mt-4 text-moss">{{ t.contact.sent }}</p>
-            <button type="button" class="mark-link mt-8" (click)="reset()">{{ t.contact.another }}</button>
+            <button type="button" class="btn btn-ghost mt-6" (click)="reset()">{{ t.contact.another }}</button>
           </div>
         } @else {
           <form [formGroup]="form" novalidate (ngSubmit)="submit()">
             <fieldset>
-              <legend class="eyebrow">{{ t.contact.intentLabel }}</legend>
-              <div class="mt-4 flex flex-wrap gap-6">
+              <legend class="text-sm font-bold">{{ t.contact.intentLabel }}</legend>
+              <div class="mt-3 flex flex-wrap gap-2">
                 <label [class]="intentClass('inquiry')">
                   <input class="sr-only" type="radio" formControlName="intent" value="inquiry" />
                   {{ t.contact.inquiry }}
@@ -89,10 +89,10 @@ const TOPIC_IDS = ['stay', 'journey', 'training', 'career', 'house'];
             </label>
 
             @if (state() === 'held') {
-              <p class="mt-6 text-moss" role="status">{{ t.contact.held }}</p>
+              <p class="mt-6 rounded-2xl bg-butter px-4 py-3" role="status">{{ t.contact.held }}</p>
             }
 
-            <button type="submit" class="mark-link mt-8">{{ t.contact.send }}</button>
+            <button type="submit" class="btn btn-coral mt-6">{{ t.contact.send }}</button>
           </form>
         }
       </div>
@@ -136,11 +136,10 @@ export class Contact {
   }
 
   intentClass(intent: 'inquiry' | 'suggestion'): string {
-    const tone =
-      this.form.controls.intent.value === intent
-        ? 'border-gold-line text-forest'
-        : 'border-transparent text-moss';
-    return `cursor-pointer border-b pb-1 ${tone}`;
+    const on = this.form.controls.intent.value === intent;
+    return on
+      ? 'cursor-pointer rounded-full bg-coral px-4 py-2 text-sm font-bold text-white'
+      : 'cursor-pointer rounded-full bg-blush px-4 py-2 text-sm font-bold text-ink';
   }
 
   show(name: 'name' | 'email' | 'topic' | 'message'): boolean {

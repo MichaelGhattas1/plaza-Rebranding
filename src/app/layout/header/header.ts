@@ -8,14 +8,14 @@ import { Logo } from '../../shared/logo/logo';
   imports: [RouterLink, RouterLinkActive, Logo],
   template: `
     @let t = lang.copy();
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:start-3 focus:z-50 focus:bg-ivory focus:px-3 focus:py-2">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:start-3 focus:z-50 focus:rounded-full focus:bg-white focus:px-3 focus:py-2">
       {{ t.nav.skip }}
     </a>
     <header class="fixed inset-x-0 top-0 z-40">
-      <div class="h-[3px] bg-gold-line"></div>
-      <div class="border-b border-line bg-ivory/90 backdrop-blur-md">
-        <div class="mx-auto flex h-[4.75rem] w-full max-w-[1440px] items-center justify-between gap-4 px-5 md:px-10">
-          <a routerLink="/" [attr.aria-label]="'Plaza Inn'" class="text-forest">
+      <div class="h-1 bg-gradient-to-r from-coral via-sun to-teal"></div>
+      <div class="border-b border-line bg-ivory/95 backdrop-blur-md">
+        <div class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 md:px-8">
+          <a routerLink="/" aria-label="Plaza Inn">
             <app-logo />
           </a>
           <nav class="hidden items-center gap-5 xl:flex" [attr.aria-label]="t.nav.primary">
@@ -31,15 +31,15 @@ import { Logo } from '../../shared/logo/logo';
             }
           </nav>
           <div class="flex items-center gap-4">
-            <div class="hidden items-center gap-3 sm:flex" dir="ltr" [attr.aria-label]="t.nav.language">
+            <div class="hidden items-center gap-1 sm:flex" dir="ltr" [attr.aria-label]="t.nav.language">
               @for (item of languages; track item.code) {
                 <button
                   type="button"
-                  class="text-[0.72rem] tracking-[0.14em]"
+                  class="rounded-full px-2.5 py-1 text-xs font-bold"
                   [attr.lang]="item.code === 'zh' ? 'zh-Hans' : item.code"
                   [attr.aria-pressed]="lang.lang() === item.code"
                   [attr.aria-label]="item.name"
-                  [class]="lang.lang() === item.code ? 'text-forest' : 'text-moss'"
+                  [class]="lang.lang() === item.code ? 'bg-coral text-white' : 'text-moss'"
                   (click)="lang.use(item.code)"
                 >
                   {{ item.short }}
@@ -48,7 +48,7 @@ import { Logo } from '../../shared/logo/logo';
             </div>
             <button
               type="button"
-              class="nav-link xl:hidden"
+              class="rounded-full bg-blush px-3 py-1.5 text-sm font-bold text-coral xl:hidden"
               [attr.aria-expanded]="open()"
               aria-controls="site-menu"
               (click)="open.set(true)"
@@ -61,19 +61,19 @@ import { Logo } from '../../shared/logo/logo';
     </header>
 
     @if (open()) {
-      <div id="site-menu" class="fixed inset-0 z-50 flex flex-col bg-forest px-6 py-6 text-ivory md:px-10">
+      <div id="site-menu" class="fixed inset-0 z-50 flex flex-col bg-ivory px-6 py-6 text-ink md:px-10">
         <div class="flex items-center justify-between">
-          <app-logo tone="ivory" />
-          <button type="button" class="text-sm tracking-[0.14em] text-gold-pale" (click)="open.set(false)" autofocus>
+          <app-logo />
+          <button type="button" class="rounded-full bg-blush px-3 py-1.5 text-sm font-bold text-coral" (click)="open.set(false)" autofocus>
             {{ t.nav.close }}
           </button>
         </div>
-        <nav class="mt-14 flex flex-col gap-3" [attr.aria-label]="t.nav.primary">
+        <nav class="mt-10 flex flex-col gap-2" [attr.aria-label]="t.nav.primary">
           @for (item of links; track item.path) {
             <a
-              class="display text-[clamp(2.6rem,8vw,4.2rem)]"
+              class="display text-4xl"
               [routerLink]="item.path"
-              routerLinkActive="text-gold-pale"
+              routerLinkActive="text-coral"
               [routerLinkActiveOptions]="{ exact: item.exact }"
               (click)="open.set(false)"
             >
@@ -81,14 +81,14 @@ import { Logo } from '../../shared/logo/logo';
             </a>
           }
         </nav>
-        <div class="mt-auto flex flex-wrap gap-4 pt-10" [attr.aria-label]="t.nav.language">
+        <div class="mt-auto flex flex-wrap gap-2 pt-10" [attr.aria-label]="t.nav.language">
           @for (item of languages; track item.code) {
             <button
               type="button"
-              class="text-sm"
+              class="rounded-full px-3 py-1.5 text-sm font-bold"
               [attr.lang]="item.code === 'zh' ? 'zh-Hans' : item.code"
               [attr.aria-pressed]="lang.lang() === item.code"
-              [class]="lang.lang() === item.code ? 'text-gold-pale' : 'text-mist'"
+              [class]="lang.lang() === item.code ? 'bg-coral text-white' : 'bg-white text-moss'"
               (click)="lang.use(item.code)"
             >
               {{ item.name }}

@@ -3,11 +3,11 @@ import { Component, input } from '@angular/core';
 @Component({
   selector: 'app-page-intro',
   template: `
-    <header class="mx-auto w-full max-w-[1440px] px-5 pt-16 pb-12 md:px-10 md:pt-24 md:pb-16">
-      <p class="eyebrow">{{ kicker() }}</p>
-      <h1 class="display mt-5 max-w-4xl text-[clamp(3rem,7vw,6.4rem)]">{{ title() }}</h1>
+    <header class="mx-auto w-full max-w-6xl px-5 pt-10 pb-8 md:px-8 md:pt-14">
+      <p class="chip">{{ kicker() }}</p>
+      <h1 class="display mt-4 max-w-3xl text-[clamp(2.3rem,5vw,3.6rem)]">{{ title() }}</h1>
       @if (lead()) {
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-moss">{{ lead() }}</p>
+        <p class="mt-4 max-w-2xl text-lg text-moss">{{ lead() }}</p>
       }
     </header>
   `,
