@@ -27,7 +27,7 @@ import { PageIntro } from '../../shared/page-intro/page-intro';
           }
         </ul>
       </div>
-      <div class="card space-y-5 p-6 text-lg leading-relaxed lg:col-span-8">
+      <div class="card space-y-5 border-s-4 border-teal p-7 text-lg leading-relaxed lg:col-span-8">
         @for (paragraph of t.about.essay; track paragraph) {
           <p>{{ paragraph }}</p>
         }
@@ -39,11 +39,20 @@ import { PageIntro } from '../../shared/page-intro/page-intro';
       <p class="mt-3 max-w-2xl text-moss">{{ t.about.ownersLead }}</p>
       <ol class="mt-6 grid gap-4 md:grid-cols-3">
         @for (item of t.about.charges; track item.title; let i = $index) {
-          <li class="rounded-2xl p-5" [class.bg-mint]="i === 0" [class.bg-butter]="i === 1" [class.bg-ice]="i === 2">
-            <p class="text-sm font-bold" [class.text-teal]="i === 0" [class.text-gold]="i === 1" [class.text-sky]="i === 2">
+          <li class="panel relative overflow-hidden p-6" [class.bg-mint]="i === 0" [class.bg-butter]="i === 1" [class.bg-ice]="i === 2">
+            <p
+              class="display pointer-events-none absolute -end-1 -top-2 text-6xl opacity-20"
+              [class.text-teal]="i === 0"
+              [class.text-gold]="i === 1"
+              [class.text-sky]="i === 2"
+              aria-hidden="true"
+            >
               0{{ i + 1 }}
             </p>
-            <h3 class="display mt-2 text-3xl">{{ item.title }}</h3>
+            <p class="relative text-sm font-bold" [class.text-teal]="i === 0" [class.text-gold]="i === 1" [class.text-sky]="i === 2">
+              0{{ i + 1 }}
+            </p>
+            <h3 class="display relative mt-2 text-3xl">{{ item.title }}</h3>
             <p class="mt-2 text-moss">{{ item.text }}</p>
           </li>
         }
