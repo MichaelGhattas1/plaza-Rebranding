@@ -1,14 +1,20 @@
 import { Component, input } from '@angular/core';
+import { Reveal } from '../reveal/reveal';
 
 @Component({
   selector: 'app-page-intro',
+  imports: [Reveal],
   template: `
-    <header class="mx-auto w-full max-w-[1440px] px-5 pt-16 pb-12 md:px-10 md:pt-24 md:pb-16">
-      <p class="eyebrow">{{ kicker() }}</p>
-      <h1 class="display mt-5 max-w-4xl text-[clamp(3rem,7vw,6.4rem)]">{{ title() }}</h1>
-      @if (lead()) {
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-moss">{{ lead() }}</p>
-      }
+    <header class="relative overflow-hidden">
+      <div class="float pointer-events-none absolute -end-12 -top-16 size-52 rounded-full bg-blush/80" aria-hidden="true"></div>
+      <div class="float float-late pointer-events-none absolute start-1/3 top-8 size-24 rounded-full bg-mint/90" aria-hidden="true"></div>
+      <div appReveal class="relative mx-auto w-full max-w-6xl px-5 pt-12 pb-8 md:px-8 md:pt-16">
+        <p class="chip">{{ kicker() }}</p>
+        <h1 class="display mt-4 max-w-3xl text-[clamp(2.5rem,5.5vw,4.2rem)]">{{ title() }}</h1>
+        @if (lead()) {
+          <p class="mt-4 max-w-2xl text-lg text-moss">{{ lead() }}</p>
+        }
+      </div>
     </header>
   `,
 })
