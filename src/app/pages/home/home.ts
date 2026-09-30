@@ -1,143 +1,111 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../core/i18n/language.service';
-import { Logo } from '../../shared/logo/logo';
 import { Motif } from '../../shared/motif/motif';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, Logo, Motif],
+  imports: [RouterLink, Motif],
   template: `
     @let t = lang.copy();
-    <section class="relative overflow-hidden">
-      <div
-        class="pointer-events-none absolute end-6 top-8 w-[min(42vw,11rem)] opacity-[0.16] md:end-12 md:top-10 md:w-[min(28vw,14rem)]"
-        aria-hidden="true"
-      >
-        <app-logo [wordmark]="false" />
-      </div>
-      <div class="relative mx-auto flex min-h-[calc(100svh-5rem)] w-full max-w-[1440px] flex-col justify-end px-5 pt-16 pb-14 md:px-10">
-        <p class="eyebrow">{{ t.home.eyebrow }}</p>
-        <p lang="en" class="brand-hero mt-6 max-w-full text-[clamp(3.5rem,12vw,9.5rem)] text-forest" aria-hidden="true">
-          Plaza Inn
-        </p>
-        <div class="mt-10 grid items-end gap-8 border-t border-line pt-8 lg:grid-cols-12">
-          <h1 class="display text-[clamp(2.1rem,4vw,3.5rem)] lg:col-span-5">{{ t.home.title }}</h1>
-          <p class="text-lg leading-relaxed text-moss lg:col-span-4">{{ t.home.lead }}</p>
-          <div class="flex flex-wrap gap-6 lg:col-span-3 lg:justify-end">
-            <a class="mark-link" routerLink="/about">{{ t.home.houseCta }}</a>
-            <a class="mark-link" routerLink="/tours">{{ t.home.journeysCta }}</a>
-          </div>
+    <section class="bg-navy text-white">
+      <div class="mx-auto w-full max-w-6xl px-5 py-16 md:px-8 md:py-24">
+        <p class="kicker">{{ t.home.eyebrow }}</p>
+        <h1 class="display mt-4 max-w-3xl text-[clamp(2.6rem,6vw,4.6rem)]">{{ t.home.title }}</h1>
+        <p class="mt-5 max-w-xl text-lg text-white/75">{{ t.home.lead }}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a class="btn btn-magenta" routerLink="/tours">{{ t.home.journeysCta }}</a>
+          <a class="btn btn-line" routerLink="/about">{{ t.home.houseCta }}</a>
         </div>
       </div>
     </section>
 
-    <section class="bg-forest text-ivory">
-      <div class="mx-auto w-full max-w-[1440px] px-5 py-20 md:px-10 md:py-28">
-        <p class="eyebrow text-gold-pale">{{ t.home.statementKicker }}</p>
-        <p class="display mt-6 max-w-4xl text-[clamp(2.4rem,5vw,4.6rem)]">{{ t.home.statement }}</p>
-        <ol class="mt-16 grid gap-10 md:grid-cols-3">
-          @for (item of t.home.principles; track item.title; let i = $index) {
-            <li class="border-t border-white/15 pt-6">
-              <span class="index-num text-2xl text-gold-pale">0{{ i + 1 }}</span>
-              <h2 class="display mt-4 text-4xl">{{ item.title }}</h2>
-              <p class="mt-3 text-mist">{{ item.text }}</p>
-            </li>
-          }
-        </ol>
-      </div>
+    <section class="grid bg-white md:grid-cols-3">
+      @for (item of t.home.principles; track item.title; let i = $index) {
+        <article class="border-t-4 px-5 py-8 md:px-8" [class.border-magenta]="i === 0" [class.border-indigo]="i === 1" [class.border-violet]="i === 2">
+          <p class="text-sm font-bold" [class.text-magenta]="i === 0" [class.text-indigo]="i === 1" [class.text-violet]="i === 2">
+            0{{ i + 1 }}
+          </p>
+          <h2 class="display mt-3 text-3xl">{{ item.title }}</h2>
+          <p class="mt-3 text-moss">{{ item.text }}</p>
+        </article>
+      }
     </section>
 
-    <section class="mx-auto w-full max-w-[1440px] px-5 py-20 md:px-10 md:py-28">
-      <div class="flex flex-wrap items-end justify-between gap-6">
-        <div>
-          <p class="eyebrow">{{ t.home.journeysKicker }}</p>
-          <h2 class="display mt-4 text-[clamp(2.6rem,5vw,4.5rem)]">{{ t.home.journeysTitle }}</h2>
-        </div>
-        <p class="max-w-sm text-moss">{{ t.home.journeysLead }}</p>
-      </div>
-      <div class="mt-12 grid gap-6 lg:grid-cols-2">
+    <section class="mx-auto w-full max-w-6xl px-5 py-14 md:px-8">
+      <p class="kicker">{{ t.home.journeysKicker }}</p>
+      <h2 class="display mt-3 max-w-xl text-4xl">{{ t.home.journeysTitle }}</h2>
+      <p class="mt-3 max-w-xl text-moss">{{ t.home.journeysLead }}</p>
+      <div class="mt-8 border-t border-line bg-white">
         @for (item of t.tours.items; track item.id) {
-          <a
-            class="group border border-line bg-paper/60 p-6 md:p-8"
-            [class.lg:col-span-2]="item.layout === 'pillars'"
-            [routerLink]="['/tours']"
-            [fragment]="item.id"
-          >
-            <div [class]="item.layout === 'pillars' ? 'grid items-center gap-8 lg:grid-cols-2' : ''">
-              <app-motif class="block max-w-xs" [name]="item.motif" />
-              <div>
-                <p class="eyebrow mt-6">{{ item.kicker }}</p>
-                <h3 class="display mt-3 text-4xl md:text-5xl">{{ item.title }}</h3>
-                <p class="mt-4 max-w-xl text-moss">{{ item.text }}</p>
-              </div>
+          <a class="grid items-center gap-6 border-b border-line px-5 py-7 md:grid-cols-12 md:px-8" [routerLink]="['/tours']" [fragment]="item.id">
+            <app-motif class="block max-w-36 text-navy md:col-span-3" [name]="item.motif" />
+            <div class="md:col-span-9">
+              <p class="kicker">{{ item.kicker }}</p>
+              <h3 class="display mt-1 text-3xl">{{ item.title }}</h3>
+              <p class="mt-2 text-moss">{{ item.text }}</p>
             </div>
           </a>
         }
       </div>
     </section>
 
-    <section class="border-y border-line bg-paper">
-      <div class="mx-auto w-full max-w-[1440px] px-5 py-20 md:px-10">
-        <p class="eyebrow">{{ t.home.servicesKicker }}</p>
-        <h2 class="display mt-4 text-[clamp(2.6rem,5vw,4.5rem)]">{{ t.home.servicesTitle }}</h2>
-        <p class="mt-4 max-w-xl text-moss">{{ t.home.servicesLead }}</p>
-        <ol class="mt-10">
-          @for (item of t.services.items; track item.id) {
-            <li class="border-t border-line">
-              <a
-                class="grid items-baseline gap-3 py-7 md:grid-cols-12"
-                [routerLink]="['/services']"
-                [fragment]="item.id"
-              >
-                <span class="index-num text-2xl md:col-span-1">{{ item.index }}</span>
-                <span class="display text-4xl md:col-span-4">{{ item.title }}</span>
-                <span class="text-moss md:col-span-7">{{ item.text }}</span>
-              </a>
-            </li>
-          }
-        </ol>
+    <section>
+      <div class="mx-auto w-full max-w-6xl px-5 pb-6 md:px-8">
+        <p class="kicker">{{ t.home.servicesKicker }}</p>
+        <h2 class="display mt-3 text-4xl">{{ t.home.servicesTitle }}</h2>
+        <p class="mt-3 max-w-xl text-moss">{{ t.home.servicesLead }}</p>
       </div>
-    </section>
-
-    <section class="mx-auto grid w-full max-w-[1440px] gap-12 px-5 py-20 md:px-10 lg:grid-cols-12">
-      <div class="lg:col-span-5">
-        <p class="eyebrow">{{ t.home.trainingKicker }}</p>
-        <h2 class="display mt-4 text-[clamp(2.6rem,5vw,4.5rem)]">{{ t.home.trainingTitle }}</h2>
-        <p class="mt-5 max-w-md text-lg text-moss">{{ t.home.trainingLead }}</p>
-        <a class="mark-link mt-8" routerLink="/training">{{ t.home.trainingCta }}</a>
-      </div>
-      <div class="grid gap-6 lg:col-span-7">
-        @for (item of t.events.programs; track item.id) {
-          <a class="border border-line p-7" [routerLink]="['/training']" [fragment]="item.id">
-            <p class="eyebrow">{{ item.audience }}</p>
-            <h3 class="display mt-3 text-4xl">{{ item.title }}</h3>
-            <p class="mt-3 text-moss">{{ item.text }}</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4">
+        @for (item of t.services.items; track item.id; let i = $index) {
+          <a
+            class="block min-h-56 p-6 text-white"
+            [class.bg-navy]="i === 0"
+            [class.bg-magenta]="i === 1"
+            [class.bg-indigo]="i === 2"
+            [class.bg-violet]="i === 3"
+            [routerLink]="['/services']"
+            [fragment]="item.id"
+          >
+            <span class="text-sm font-bold">{{ item.index }}</span>
+            <h3 class="display mt-8 text-3xl">{{ item.title }}</h3>
+            <p class="mt-3 text-sm opacity-80">{{ item.text }}</p>
           </a>
         }
       </div>
     </section>
 
-    <section class="bg-forest-deep text-ivory">
-      <div class="mx-auto grid w-full max-w-[1440px] items-end gap-8 px-5 py-20 md:px-10 lg:grid-cols-12">
-        <div class="lg:col-span-7">
-          <p class="eyebrow text-gold-pale">{{ t.home.careersKicker }}</p>
-          <h2 class="display mt-4 text-[clamp(2.6rem,5vw,4.5rem)]">{{ t.home.careersTitle }}</h2>
-          <p class="mt-4 max-w-lg text-mist">{{ t.home.careersLead }}</p>
-        </div>
-        <div class="lg:col-span-5 lg:text-end">
-          <a class="mark-link border-gold-pale text-ivory" routerLink="/roles">{{ t.home.careersCta }}</a>
-        </div>
+    <section class="grid lg:grid-cols-2">
+      <div class="bg-indigo px-5 py-12 text-white md:px-10">
+        <p class="kicker">{{ t.home.trainingKicker }}</p>
+        <h2 class="display mt-3 text-4xl">{{ t.home.trainingTitle }}</h2>
+        <p class="mt-4 max-w-md text-white/80">{{ t.home.trainingLead }}</p>
+        <a class="btn btn-magenta mt-6" routerLink="/training">{{ t.home.trainingCta }}</a>
+      </div>
+      <div class="bg-white">
+        @for (item of t.events.programs; track item.id) {
+          <a class="block border-b border-line px-5 py-7 md:px-8" [routerLink]="['/training']" [fragment]="item.id">
+            <p class="text-sm font-bold text-indigo">{{ item.audience }}</p>
+            <h3 class="display mt-2 text-3xl">{{ item.title }}</h3>
+            <p class="mt-2 text-moss">{{ item.text }}</p>
+          </a>
+        }
       </div>
     </section>
 
-    <section class="mx-auto flex w-full max-w-[1440px] flex-wrap items-end justify-between gap-8 px-5 py-20 md:px-10">
-      <div>
-        <p class="eyebrow">{{ t.home.contactKicker }}</p>
-        <h2 class="display mt-4 max-w-3xl text-[clamp(2.6rem,5vw,4.8rem)]">{{ t.home.contactTitle }}</h2>
-        <p class="mt-4 max-w-xl text-moss">{{ t.home.contactLead }}</p>
+    <section class="grid bg-navy text-white md:grid-cols-2">
+      <div class="border-b border-white/15 px-5 py-12 md:border-e md:border-b-0 md:px-10">
+        <p class="kicker">{{ t.home.careersKicker }}</p>
+        <h2 class="display mt-3 text-4xl">{{ t.home.careersTitle }}</h2>
+        <p class="mt-3 max-w-md text-white/75">{{ t.home.careersLead }}</p>
+        <a class="btn btn-magenta mt-6" routerLink="/roles">{{ t.home.careersCta }}</a>
       </div>
-      <a class="mark-link" routerLink="/contact">{{ t.home.contactCta }}</a>
+      <div class="px-5 py-12 md:px-10">
+        <p class="kicker">{{ t.home.contactKicker }}</p>
+        <h2 class="display mt-3 text-4xl">{{ t.home.contactTitle }}</h2>
+        <p class="mt-3 max-w-md text-white/75">{{ t.home.contactLead }}</p>
+        <a class="btn btn-line mt-6" routerLink="/contact">{{ t.home.contactCta }}</a>
+      </div>
     </section>
   `,
 })

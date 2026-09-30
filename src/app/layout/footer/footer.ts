@@ -8,22 +8,22 @@ import { Logo } from '../../shared/logo/logo';
   imports: [RouterLink, Logo],
   template: `
     @let t = lang.copy();
-    <footer class="border-t border-line bg-paper">
-      <div class="mx-auto grid w-full max-w-[1440px] gap-12 px-5 py-16 md:px-10 lg:grid-cols-12">
+    <footer class="bg-navy text-white">
+      <div class="mx-auto grid w-full max-w-6xl gap-8 px-5 py-12 md:px-8 lg:grid-cols-12">
         <div class="lg:col-span-5">
-          <a routerLink="/" class="text-forest" aria-label="Plaza Inn">
-            <app-logo />
+          <a routerLink="/" aria-label="Plaza Inn">
+            <app-logo tone="ivory" />
           </a>
-          <p class="mt-6 max-w-sm text-moss">{{ t.footer.line }}</p>
+          <p class="mt-4 max-w-sm text-white/70">{{ t.footer.line }}</p>
         </div>
-        <nav class="grid grid-cols-2 gap-x-6 gap-y-3 lg:col-span-4" [attr.aria-label]="t.nav.primary">
+        <nav class="grid grid-cols-2 gap-x-6 gap-y-2 lg:col-span-4" [attr.aria-label]="t.nav.primary">
           @for (item of links; track item.path) {
-            <a class="text-sm text-forest hover:text-gold" [routerLink]="item.path">{{ label(item.key) }}</a>
+            <a class="text-sm font-semibold text-white/80 hover:text-magenta" [routerLink]="item.path">{{ label(item.key) }}</a>
           }
         </nav>
-        <div class="lg:col-span-3 lg:text-end">
-          <p class="eyebrow">{{ t.footer.place }}</p>
-          <p class="mt-6 text-sm text-moss">© {{ year }} Plaza Inn. {{ t.footer.rights }}</p>
+        <div class="lg:col-span-3">
+          <p class="kicker">{{ t.footer.place }}</p>
+          <p class="mt-3 text-sm text-white/60">© {{ year }} Plaza Inn. {{ t.footer.rights }}</p>
         </div>
       </div>
     </footer>
